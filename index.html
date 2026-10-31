@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lunora: gentle daily guidance for your cycle</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="logo.svg?v=2" type="image/svg+xml"><link rel="icon" href="logo.png?v=2" type="image/png"><link rel="apple-touch-icon" href="logo.png?v=2"><link rel="stylesheet" href="style.css"></head>
+<body>
+<div id="splash" role="status" aria-label="Loading Lunora" style="position:fixed;inset:0;z-index:99;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#EDF3F5;color:#0B2530"><div class="ring"><span class="orbit"><i></i></span><svg class="sl" viewBox="0 0 64 64" aria-hidden="true"><defs><mask id="ms"><rect width="64" height="64" fill="#fff"/><circle cx="43" cy="24" r="22" fill="#000"/></mask></defs><circle cx="30" cy="34" r="26" fill="#2F6B7E" mask="url(#ms)"/><circle cx="45" cy="25" r="7" fill="#6AA6B6"/></svg></div><b>Lunora</b><small>NOT JUST TRACKING. GUIDING.</small><div class="dots"><i></i><i></i><i></i></div></div>
+<header><a class="brand" href="./"><svg viewBox="0 0 64 64" class="logo" role="img" aria-label="Lunora logo"><defs><mask id="mh"><rect width="64" height="64" fill="#fff"/><circle cx="43" cy="24" r="22" fill="#000"/></mask></defs><circle cx="30" cy="34" r="26" fill="#EDF3F5" mask="url(#mh)"/><circle cx="45" cy="25" r="7" fill="#6AA6B6"/></svg>Lunora</a><nav id="appnav" hidden>
+<button data-t="today" class="on">Today</button><button data-t="log">Log</button><button data-t="cycle">Cycle</button><button data-t="comm">Community</button><button data-t="insights">Insights</button><button data-t="meals">Meals</button><button data-t="report">Doctor report</button></nav>
+<div id="pub"><a href="#authcard" id="p-in">Sign in</a><a href="#authcard" id="p-up" class="join">Join Lunora</a></div><button id="out" hidden>Log out</button></header>
+<main>
+<section id="setup" hidden><h1>One quick setup step</h1><p>Add your Supabase URL and anon key to <b>config.js</b>, run <b>schema.sql</b> in Supabase, then refresh. The README has the steps.</p></section>
+
+<section id="auth" hidden>
+ <div class="hero"><div><p class="tag">Not just tracking. Guiding.</p><h1>Gentle daily guidance for every stage of your cycle.</h1>
+ <p>Lunora turns medical advice into a simple daily routine for PCOS, periods, menopause, fertility and pregnancy, then shows how your habits connect to how you feel.</p><a class="cta" href="#authcard" id="h-up">Get started</a></div><div class="orb" aria-hidden="true"></div></div>
+ <h2 class="sec">Lunora adapts to where you are</h2><p class="muted">Pick what you need after you sign in. Your daily plan changes to match.</p><div id="home-p" class="opts"></div>
+ <div class="card narrow" id="authcard"><div class="tabs"><button id="t-in" class="primary">Sign in</button><button id="t-up">Create account</button></div>
+ <form id="f-in"><label>Email<input type="email" id="in-e" required></label><label>Password<input type="password" id="in-p" required></label><button class="primary">Sign in</button></form>
+ <form id="f-up" hidden><label>Name<input id="up-n" required></label><label>Email<input type="email" id="up-e" required></label><label>Password (6+ characters)<input type="password" id="up-p" minlength="6" required></label><button class="primary">Create account</button></form>
+ <p id="amsg" class="msg" role="alert"></p></div>
+</section>
+
+<section id="onboard" hidden><h1 id="ob-h">What are you using Lunora for?</h1><p class="muted" id="ob-s">Step 1 of 2. You can change this later.</p>
+ <form id="f-ob" class="narrow-wide">
+ <div id="ob1"><div id="ob-p" class="opts"></div></div>
+ <div id="ob2" class="card narrow" hidden>
+ <label>Age<input type="number" id="ob-age" min="10" max="80" required></label>
+ <label>Diet<select id="ob-diet"><option>Vegetarian</option><option>Eggetarian</option><option>Non-vegetarian</option><option>Vegan</option></select></label>
+ <label>Activity level<select id="ob-lv"><option>Beginner</option><option>Regular</option></select></label>
+ <fieldset id="ob-goals"><legend>What do you want to focus on?</legend></fieldset></div>
+ <div class="row"><button type="button" id="ob-back" hidden>Back</button><button class="primary" id="ob-next">Continue</button></div></form></section>
+
+<section id="app" hidden>
+ <div class="tab on" id="tab-today"><div class="row"><h1 id="hi"></h1><span id="streak" class="chip"></span></div><p id="focus" class="muted"></p>
+  <div class="bar"><i id="prog"></i></div><ul id="plan" class="plan"></ul></div>
+ <div class="tab" id="tab-log"><h1>Today's log</h1><form id="f-log" class="card grid">
+  <label>Mood (1 low, 5 high)<select id="l-mood"><option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option></select></label>
+  <label>Skin (1 rough, 5 clear)<select id="l-skin"><option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option></select></label>
+  <label>Sleep (hours)<input type="number" id="l-sleep" step="0.5" min="0" max="16"></label>
+  <label>Water (glasses)<input type="number" id="l-water" min="0" max="20"></label>
+  <label>Weight (kg, optional)<input type="number" id="l-w" step="0.1" min="25" max="250"></label>
+  <label class="ck"><input type="checkbox" id="l-period">Period day</label><label class="ck"><input type="checkbox" id="l-sugar">High-sugar day</label>
+  <div class="full"><button class="primary">Save today</button> <button type="button" id="sample">Load 3 weeks of sample data</button> <span id="lmsg" class="msg"></span></div></form></div>
+ <div class="tab" id="tab-insights"><h1>Insights</h1><div id="ins"></div></div>
+ <div class="tab" id="tab-cycle"><h1>Cycle calendar</h1><div class="cyc"><div class="card"><label>When did your last period start?<input type="date" id="c-start"></label>
+ <div class="two"><div>Usual cycle<div class="st"><button type="button" class="stp" data-k="cl" data-d="-1">-</button><b id="c-cl">28</b><button type="button" class="stp" data-k="cl" data-d="1">+</button><small>days</small></div></div>
+ <div>Period length<div class="st"><button type="button" class="stp" data-k="pl" data-d="-1">-</button><b id="c-pl">5</b><button type="button" class="stp" data-k="pl" data-d="1">+</button><small>days</small></div></div></div>
+ <button class="primary" id="c-save">Update my cycle</button><p id="cmsg" class="msg"></p><p class="muted small">Dates may shift. Cycles can be irregular, especially with PCOS, so these are estimates and not medical advice. Days you tick as "Period day" in the Log also show here.</p></div>
+ <div class="card"><div class="row"><button id="c-prev" aria-label="Previous month">&lsaquo;</button><b id="c-title"></b><button id="c-next" aria-label="Next month">&rsaquo;</button></div><div id="c-grid" class="cal"></div>
+ <ul class="legend"><li><i class="p"></i>Period</li><li><i class="e"></i>Expected</li><li><i class="f"></i>Fertile window</li><li><i class="o"></i>Ovulation</li><li><i class="m"></i>PMS</li></ul></div></div></div>
+ <div class="tab" id="tab-comm"><h1>Community</h1><p class="note card">Share what worked for you. Posts are anonymous. Please do not share names, phone numbers or medical advice, and be kind.</p>
+ <form id="f-cm" class="card"><label>Topic<select id="cm-t"></select></label><label>What worked for you?<textarea id="cm-b" maxlength="500" rows="3" required></textarea></label><div><button class="primary">Post anonymously</button></div></form>
+ <label class="fl">Show<select id="cm-f"></select></label><div id="feed"></div></div>
+ <div class="tab" id="tab-meals"><h1>Meal checker</h1><input id="q" placeholder="Search a food, for example dal, cake, oats" aria-label="Search foods"><div id="mres"></div></div>
+ <div class="tab" id="tab-report"><div class="row noprint"><h1>Doctor report</h1><button class="primary" onclick="print()">Print or save as PDF</button></div><div id="rep"></div></div>
+</section>
+<p class="foot">Lunora gives general lifestyle guidance, not medical advice. Please talk to your doctor about diagnosis and treatment.</p>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="config.js"></script><script src="app.js"></script>
+</body></html>
