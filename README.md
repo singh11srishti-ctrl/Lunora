@@ -16,7 +16,7 @@ Sign up and login (Supabase Auth), a personalised plan from a short profile, a f
 6. Open `index.html` (or run `python -m http.server`). On the **Log** tab, load sample data to see Insights.
 
 ## Deploy
-Push to GitHub, then **Settings > Pages**, branch `main`, folder `/ (root)`. Site: `https://YOUR-USERNAME.github.io/lunora/`
+Push to GitHub, then **Settings > Pages**, branch `main`, folder `/ (root)`. Site: https://singh11srishti-ctrl.github.io/Lunora/
 
 ## Tech
 HTML, CSS, vanilla JavaScript, Supabase (Auth and Postgres).
