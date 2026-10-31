@@ -36,7 +36,7 @@ let obStep=1;
 function obShow(){$("#ob1").hidden=obStep!==1;$("#ob2").hidden=obStep!==2;$("#ob-back").hidden=obStep===1;$("#ob-next").textContent=obStep===1?"Continue":"Create my plan";
  $("#ob-s").textContent="Step "+obStep+" of 2. You can change this later.";$("#ob-h").textContent=obStep===1?"What are you using Lunora for?":"A few details";
  $("#ob-age").required=obStep===2}
-$("#$("#ob-back").onclick=()=>{obStep=1;obShow()};=()=>{obStep=1;obShow()};
+$("#ob-back").onclick=()=>{obStep=1;obShow()}; obShow();
 $("#f-ob").onsubmit=async e=>{e.preventDefault();
  const sel=$("#ob-p input:checked");if(!sel)return;
  if(obStep===1){const k=PURPOSES.find(p=>p[1]===sel.value)[0];const g=$("#ob-goals");g.innerHTML="<legend>What do you want to focus on?</legend>";
